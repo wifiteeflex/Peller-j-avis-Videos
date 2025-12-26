@@ -15,19 +15,13 @@
 
     h1 {
       font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .title {
-      font-size: 15px;
-      color: #ddd;
       margin-bottom: 15px;
-      line-height: 1.4;
     }
 
-    .ad-box {
-      margin: 15px auto 25px;
-      max-width: 320px;
+    p {
+      color: #ccc;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
     button {
@@ -40,35 +34,48 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
+    /* Video title text */
+    .video-title {
+      margin-top: 18px;
+      font-size: 15px;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    /* Countdown box */
+    #countdownBox {
+      display: none;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid #00c853;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
   </style>
 </head>
-
 <body>
 
-<h1>Watch the Full Video</h1>
+<h1>Click Play to watch the Full Video</h1>
+<p>The video will play shortly.</p>
 
-<div class="title">
-  Goodbye Nigeria on our way to UK ❤️ <br>
+<button id="playBtn">PLAY NOW ▶️</button>
+
+<!-- VIDEO CONTENT TEXT -->
+<div class="video-title">
+  Goodbye Nigeria on our way to UK ❤️  
   I love you all, we will miss y’all
 </div>
 
-<!-- 🔥 MONETAG AD (UNDER TITLE) -->
-<div class="ad-box">
-<script>
-(function(s){
-  s.dataset.zone='10379163',
-  s.src='https://gizokraijaw.net/vignette.min.js'
-})([document.documentElement, document.body].filter(Boolean)
-  .pop()
-  .appendChild(document.createElement('script')));
-</script>
+<div id="countdownBox">
+  Video starts in <span id="count">15</span>s
 </div>
-<!-- 🔥 MONETAG AD END -->
-
-<button onclick="go()">▶ PLAY</button>
 
 <script>
-  const links = [
+  const monetagLinks = [
     "https://otieu.com/4/7533041",
     "https://otieu.com/4/7461956",
     "https://otieu.com/4/8859017",
@@ -81,10 +88,29 @@
     "https://otieu.com/4/8770744"
   ];
 
-  function go() {
-    const random = Math.floor(Math.random() * links.length);
-    window.location.href = links[random];
-  }
+  const tiktokLink = "https://vt.tiktok.com/ZSPoukHe1/";
+  const playBtn = document.getElementById("playBtn");
+  const countdownBox = document.getElementById("countdownBox");
+  const countEl = document.getElementById("count");
+
+  playBtn.onclick = function () {
+    const random = Math.floor(Math.random() * monetagLinks.length);
+    window.open(monetagLinks[random], "_blank");
+
+    playBtn.style.display = "none";
+    countdownBox.style.display = "block";
+
+    let timeLeft = 10;
+    const timer = setInterval(() => {
+      timeLeft--;
+      countEl.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = tiktokLink;
+      }
+    }, 1000);
+  };
 </script>
 
 </body>
