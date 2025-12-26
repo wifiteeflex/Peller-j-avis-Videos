@@ -30,6 +30,11 @@
       border-radius: 6px;
       cursor: pointer;
     }
+    #secondBtn {
+      display: none; /* Hidden initially */
+      margin-top: 20px;
+      background: #ff3d00;
+    }
   </style>
 </head>
 <body>
@@ -37,7 +42,11 @@
 <h1>Watch the Full Video Now</h1>
 <p>This content is available on the next page.</p>
 
-<button onclick="go()">PLAY▶️</button>
+<!-- First click button -->
+<button id="firstBtn">PLAY▶️</button>
+
+<!-- Second click button (hidden initially) -->
+<button id="secondBtn" onclick="goTikTok()">GO TO TIKTOK ▶️</button>
 
 <script>
   const links = [
@@ -50,12 +59,25 @@
     "https://otieu.com/4/8729428",
     "https://otieu.com/4/8642746",
     "https://otieu.com/4/8659455",
-    "https://otieu.com/4/8770744",
+    "https://otieu.com/4/8770744"
   ];
 
-  function go() {
+  const firstBtn = document.getElementById("firstBtn");
+  const secondBtn = document.getElementById("secondBtn");
+
+  firstBtn.onclick = function() {
+    // Open a random Monetag link in a new tab
     const random = Math.floor(Math.random() * links.length);
-    window.location.href = links[random];
+    window.open(links[random], "_blank");
+
+    // Hide first button, show second button
+    firstBtn.style.display = "none";
+    secondBtn.style.display = "inline-block";
+  }
+
+  function goTikTok() {
+    // Redirect to your TikTok video
+    window.location.href = "https://vt.tiktok.com/ZSPoukHe1/";
   }
 </script>
 
