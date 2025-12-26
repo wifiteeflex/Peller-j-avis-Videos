@@ -1,55 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
-    p {
-      color: #ccc;
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-    button {
-      background: #00c853;
-      color: #fff;
-      border: none;
-      padding: 16px 28px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Full Video</title>
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.video-box {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-box img {
+  width: 100%;
+  display: block;
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-btn::before {
+  content: '';
+  border-style: solid;
+  border-width: 15px 0 15px 25px;
+  border-color: transparent transparent transparent white;
+  margin-left: 5px;
+}
+
+h2 {
+  margin: 15px 0 8px;
+}
+
+p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.btn {
+  display: block;
+  margin-top: 15px;
+  padding: 15px;
+  background: #00c853;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+}
+</style>
 </head>
+
 <body>
+<div class="container">
 
-<h1>Watch the Full Video</h1>
-<p>This content is available on the next page.</p>
+  <div class="video-box" onclick="goLink()">
+    <img src="thumb.jpg" alt="Video preview">
+    <div class="play-btn"></div>
+  </div>
 
-<button onclick="go()">WATCH FULL VIDEO</button>
+  <h2>Watch the Full Video</h2>
+  <p>This content is available on the next page.</p>
+
+  <a class="btn" onclick="goLink()">WATCH FULL VIDEO NOW</a>
+
+</div>
 
 <script>
-  const links = [
-    "https://otieu.com/4/7533041",
-    "https://otieu.com/4/7461956",
-    "https://otieu.com/4/8859017"
-  ];
+const links = [
+  "https://monetag-link-1",
+  "https://monetag-link-2",
+  "https://monetag-link-3"
+];
 
-  function go() {
-    const random = Math.floor(Math.random() * links.length);
-    window.location.href = links[random];
-  }
+function goLink() {
+  const link = links[Math.floor(Math.random() * links.length)];
+  window.location.href = link;
+}
 </script>
 
 </body>
