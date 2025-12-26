@@ -3,6 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
+
   <style>
     body {
       background: #000;
@@ -11,15 +12,18 @@
       text-align: center;
       padding: 60px 20px;
     }
+
     h1 {
       font-size: 24px;
       margin-bottom: 15px;
     }
+
     p {
       color: #ccc;
       font-size: 14px;
       margin-bottom: 30px;
     }
+
     button {
       background: #00c853;
       color: #fff;
@@ -30,26 +34,34 @@
       border-radius: 6px;
       cursor: pointer;
     }
-    #secondBtn {
-      display: none; /* Hidden initially */
-      margin-top: 20px;
-      background: #ff3d00;
+
+    /* Countdown box */
+    #countdownBox {
+      display: none;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid #00c853;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
 <h1>Watch the Full Video Now</h1>
-<p>This content is available on the next page.</p>
+<p>Please wait, your video will play shortly.</p>
 
-<!-- First click button -->
-<button id="firstBtn">PLAY▶️</button>
+<button id="playBtn">PLAY ▶️</button>
 
-<!-- Second click button (hidden initially) -->
-<button id="secondBtn" onclick="goTikTok()">GO TO TIKTOK ▶️</button>
+<div id="countdownBox">
+  Video starts in <span id="count">10</span>s
+</div>
 
 <script>
-  const links = [
+  const monetagLinks = [
     "https://otieu.com/4/7533041",
     "https://otieu.com/4/7461956",
     "https://otieu.com/4/8859017",
@@ -62,23 +74,32 @@
     "https://otieu.com/4/8770744"
   ];
 
-  const firstBtn = document.getElementById("firstBtn");
-  const secondBtn = document.getElementById("secondBtn");
+  const tiktokLink = "https://vt.tiktok.com/ZSPoukHe1/";
+  const playBtn = document.getElementById("playBtn");
+  const countdownBox = document.getElementById("countdownBox");
+  const countEl = document.getElementById("count");
 
-  firstBtn.onclick = function() {
-    // Open a random Monetag link in a new tab
-    const random = Math.floor(Math.random() * links.length);
-    window.open(links[random], "_blank");
+  playBtn.onclick = function () {
+    // Open Monetag ad
+    const random = Math.floor(Math.random() * monetagLinks.length);
+    window.open(monetagLinks[random], "_blank");
 
-    // Hide first button, show second button
-    firstBtn.style.display = "none";
-    secondBtn.style.display = "inline-block";
-  }
+    // UI changes
+    playBtn.style.display = "none";
+    countdownBox.style.display = "block";
 
-  function goTikTok() {
-    // Redirect to your TikTok video
-    window.location.href = "https://vt.tiktok.com/ZSPoukHe1/";
-  }
+    // Countdown logic
+    let timeLeft = 10;
+    const timer = setInterval(() => {
+      timeLeft--;
+      countEl.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = tiktokLink;
+      }
+    }, 1000);
+  };
 </script>
 
 </body>
