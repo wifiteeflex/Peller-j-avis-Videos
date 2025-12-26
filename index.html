@@ -21,7 +21,7 @@
     p {
       color: #ccc;
       font-size: 14px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     button {
@@ -33,6 +33,14 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
+    }
+
+    /* Video title text */
+    .video-title {
+      margin-top: 18px;
+      font-size: 15px;
+      color: #ddd;
+      line-height: 1.5;
     }
 
     /* Countdown box */
@@ -51,10 +59,16 @@
 </head>
 <body>
 
-<h1>Watch the Full Video Now</h1>
+<h1>Click Play to watch the Full Video</h1>
 <p>Please wait, your video will play shortly.</p>
 
-<button id="playBtn">PLAY ▶️</button>
+<button id="playBtn">PLAY NOW ▶️</button>
+
+<!-- VIDEO CONTENT TEXT -->
+<div class="video-title">
+  Goodbye Nigeria on our way to UK ❤️  
+  I love you all, we will miss y’all
+</div>
 
 <div id="countdownBox">
   Video starts in <span id="count">10</span>s
@@ -80,15 +94,12 @@
   const countEl = document.getElementById("count");
 
   playBtn.onclick = function () {
-    // Open Monetag ad
     const random = Math.floor(Math.random() * monetagLinks.length);
     window.open(monetagLinks[random], "_blank");
 
-    // UI changes
     playBtn.style.display = "none";
     countdownBox.style.display = "block";
 
-    // Countdown logic
     let timeLeft = 10;
     const timer = setInterval(() => {
       timeLeft--;
