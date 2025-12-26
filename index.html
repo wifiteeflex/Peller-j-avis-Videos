@@ -1,60 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Watch Full Video</title>
+  <meta name="robots" content="noindex, nofollow">
   <style>
     body {
-      background-color: #000;
+      background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
     }
     h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    .video-thumb {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 10px;
+      font-size: 24px;
       margin-bottom: 15px;
     }
-    .video-title {
-      font-size: 20px;
+    p {
+      color: #ccc;
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    button {
+      background: #00c853;
       color: #fff;
-      margin-bottom: 25px;
-    }
-    .btn {
-      background-color: #28a745;
-      color: white;
-      font-size: 22px;
-      padding: 15px 30px;
       border: none;
-      border-radius: 8px;
+      padding: 16px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover {
-      background-color: #1e7e34;
     }
   </style>
 </head>
 <body>
 
-  <h1>Watch the Full Video</h1>
+<h1>Watch the Full Video</h1>
+<p>This content is available on the next page.</p>
 
-  <!-- Embedded Video Thumbnail -->
-  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..." alt="Video Thumbnail" class="video-thumb">
+<button onclick="go()">WATCH FULL VIDEO</button>
 
-  <!-- Video Title -->
-  <div class="video-title">Me and my baby enjoying in Dubai for hangout guys am so happy today</div>
+<script>
+  const links = [
+    "https://otieu.com/4/7533041",
+    "https://otieu.com/4/7461956",
+    "https://otieu.com/4/8859017"
+  ];
 
-  <!-- Clickable Button -->
-  <a href="https://otieu.com/4/7533041" class="btn">WATCH FULL VIDEO 🎬</a>
+  function go() {
+    const random = Math.floor(Math.random() * links.length);
+    window.location.href = links[random];
+  }
+</script>
 
 </body>
 </html>
