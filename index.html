@@ -24,7 +24,7 @@
       margin-bottom: 20px;
     }
 
-    /* 🔥 BLINKING PLAY BUTTON */
+    /* 🔥 SMOOTH PULSE PLAY BUTTON */
     button {
       background: #00c853;
       color: #fff;
@@ -34,13 +34,22 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      animation: blink 1.2s infinite;
+      animation: pulse 1.6s infinite;
     }
 
-    @keyframes blink {
-      0%   { opacity: 1; }
-      50%  { opacity: 0.4; }
-      100% { opacity: 1; }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7);
+      }
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 12px rgba(0, 200, 83, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 200, 83, 0);
+      }
     }
 
     .video-title {
@@ -77,7 +86,7 @@
 </div>
 
 <div id="countdownBox">
-  Video starts in <span id="count">15</span>s
+  Video starts in <span id="count">20</span>s
 </div>
 
 <script>
@@ -106,7 +115,7 @@
     playBtn.style.display = "none";
     countdownBox.style.display = "block";
 
-    let timeLeft = 10;
+    let timeLeft = 20;
     const timer = setInterval(() => {
       timeLeft--;
       countEl.textContent = timeLeft;
