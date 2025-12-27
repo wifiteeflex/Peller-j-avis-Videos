@@ -24,6 +24,7 @@
       margin-bottom: 20px;
     }
 
+    /* 🔥 BLINKING PLAY BUTTON */
     button {
       background: #00c853;
       color: #fff;
@@ -33,9 +34,15 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
+      animation: blink 1.2s infinite;
     }
 
-    /* Video title text */
+    @keyframes blink {
+      0%   { opacity: 1; }
+      50%  { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
     .video-title {
       margin-top: 18px;
       font-size: 15px;
@@ -43,7 +50,6 @@
       line-height: 1.5;
     }
 
-    /* Countdown box */
     #countdownBox {
       display: none;
       position: fixed;
@@ -57,14 +63,14 @@
     }
   </style>
 </head>
+
 <body>
 
 <h1>Click Play to watch the Full Video</h1>
 <p>The video will play shortly.</p>
 
-<button id="playBtn">PLAY NOW ▶️</button>
+<button id="playBtn">PLAY ▶️</button>
 
-<!-- VIDEO CONTENT TEXT -->
 <div class="video-title">
   Goodbye Nigeria on our way to UK ❤️  
   I love you all, we will miss y’all
