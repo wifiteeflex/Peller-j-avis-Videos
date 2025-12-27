@@ -24,7 +24,7 @@
       margin-bottom: 20px;
     }
 
-    /* 🔥 SMOOTH PULSE PLAY BUTTON */
+    /* 🔥 Smooth pulse button */
     button {
       background: #00c853;
       color: #fff;
@@ -44,7 +44,7 @@
       }
       70% {
         transform: scale(1.05);
-        box-shadow: 0 0 0 12px rgba(0, 200, 83, 0);
+        box-shadow: 0 0 0 14px rgba(0, 200, 83, 0);
       }
       100% {
         transform: scale(1);
@@ -59,16 +59,27 @@
       line-height: 1.5;
     }
 
+    /* 🔥 CENTERED COUNTDOWN */
     #countdownBox {
       display: none;
       position: fixed;
-      top: 15px;
-      right: 15px;
-      background: rgba(0,0,0,0.8);
-      border: 1px solid #00c853;
-      padding: 10px 14px;
-      border-radius: 6px;
-      font-size: 14px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.9);
+      border: 2px solid #00c853;
+      padding: 25px 30px;
+      border-radius: 10px;
+      font-size: 22px;
+      font-weight: bold;
+      z-index: 9999;
+    }
+
+    #count {
+      font-size: 36px;
+      color: #00c853;
+      display: block;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -86,7 +97,8 @@
 </div>
 
 <div id="countdownBox">
-  Video starts in <span id="count">20</span>s
+  Your video starts in
+  <span id="count">20</span>
 </div>
 
 <script>
