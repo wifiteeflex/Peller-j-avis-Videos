@@ -11,7 +11,7 @@
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
     }
 
     h1 {
@@ -36,8 +36,6 @@
       border-radius: 6px;
       cursor: pointer;
       animation: pulse 1.6s infinite;
-      display: none;
-      margin-top: 10px;
     }
 
     @keyframes pulse {
@@ -51,6 +49,13 @@
       font-size: 15px;
       color: #ddd;
       line-height: 1.5;
+    }
+
+    img {
+      width:100%;
+      max-width:360px;
+      border-radius:8px;
+      margin-top:15px;
     }
 
     /* 🔥 LIKE COMMENT SHARE */
@@ -136,13 +141,6 @@
       display: block;
       margin-top: 10px;
     }
-
-    video {
-      width:100%;
-      max-width:360px;
-      border-radius:8px;
-      margin-top:15px;
-    }
   </style>
 </head>
 
@@ -151,16 +149,13 @@
 <h1>Click Play to watch the Full Video Now</h1>
 <p>Play now to start watching.</p>
 
-<video id="myVideo" autoplay muted playsinline>
-  <source src="https://cdn.streamable.com/video/mp4/5qok3m.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
-</video>
-
-<button id="playBtn">WATCH FULL VIDEO ▶️</button>
+<button id="playBtn">PLAY ▶️</button>
 
 <div class="video-title">
   Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
 </div>
+
+<img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg">
 
 <!-- 🔥 LIKE COMMENT SHARE -->
 <div class="actions">
@@ -172,7 +167,7 @@
 <!-- 🔥 CTA -->
 <div class="cta-box">
   ♥️ peller & javis ♥️<br>
-  <span class="cta-sub">Watch full video to unlock all content</span>
+  <span class="cta-sub">Click PLAY to unlock full video</span>
   <div class="viewers">👀 74,532 people are watching now</div>
 </div>
 
@@ -200,18 +195,10 @@
     window.open(monetagLinks[random], "_blank");
   }
 
-  const video = document.getElementById("myVideo");
+  const youtubeLink = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
   const playBtn = document.getElementById("playBtn");
   const countdownBox = document.getElementById("countdownBox");
   const countEl = document.getElementById("count");
-
-  // Pause video after 13 seconds and show Watch Full Video button
-  video.addEventListener('loadedmetadata', () => {
-    setTimeout(() => {
-      video.pause();
-      playBtn.style.display = "inline-block";
-    }, 13000); // 13 seconds
-  });
 
   playBtn.onclick = function () {
     goAd();
@@ -226,11 +213,11 @@
 
       if (timeLeft <= 0) {
         clearInterval(timer);
-        window.location.href = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
+        window.location.href = youtubeLink;
       }
     }, 1000);
   };
 </script>
 
 </body>
-  </html>
+</html>
