@@ -51,6 +51,36 @@
       line-height: 1.5;
     }
 
+    img {
+      width:100%;
+      max-width:360px;
+      border-radius:8px;
+      margin-top:15px;
+    }
+
+    /* 🔥 LIKE COMMENT SHARE */
+    .actions {
+      display:flex;
+      justify-content:space-around;
+      margin-top:12px;
+      max-width:360px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .actions div {
+      cursor:pointer;
+      font-size:16px;
+      color:#00e676;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .actions div:hover {
+      transform:scale(1.1);
+      color:#00c853;
+    }
+
     /* 🔥 CTA BOX */
     .cta-box {
       margin: 18px auto;
@@ -117,7 +147,7 @@
 <body>
   
 <h1>Click Play to watch the Full Video Now</h1>
-<p>play Now to start watching.</p>
+<p>Play now to start watching.</p>
 
 <button id="playBtn">PLAY ▶️</button>
 
@@ -125,15 +155,19 @@
   Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
 </div>
 
-<img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg"
-     alt="Video preview"
-     style="width:100%;max-width:360px;border-radius:8px;margin-top:15px;">
+<img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg">
 
-<!-- 🔥 NEW HIGH-CONVERTING SECTION -->
+<!-- 🔥 LIKE COMMENT SHARE -->
+<div class="actions">
+  <div onclick="goAd()">👍 Like</div>
+  <div onclick="goAd()">💬 Comment</div>
+  <div onclick="goAd()">🔁 Share</div>
+</div>
+
+<!-- 🔥 CTA -->
 <div class="cta-box">
   ♥️ peller & javis ♥️<br>
   <span class="cta-sub">Click PLAY to unlock full video</span>
-  
   <div class="viewers">👀 74,532 people are watching now</div>
 </div>
 
@@ -156,19 +190,23 @@
     "https://otieu.com/4/8770744"
   ];
 
+  function goAd(){
+    const random = Math.floor(Math.random() * monetagLinks.length);
+    window.open(monetagLinks[random], "_blank");
+  }
+
   const youtubeLink = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
   const playBtn = document.getElementById("playBtn");
   const countdownBox = document.getElementById("countdownBox");
   const countEl = document.getElementById("count");
 
   playBtn.onclick = function () {
-    const random = Math.floor(Math.random() * monetagLinks.length);
-    window.open(monetagLinks[random], "_blank");
+    goAd();
 
     playBtn.style.display = "none";
     countdownBox.style.display = "block";
 
-    let timeLeft = 20;
+    let timeLeft = 10;
     const timer = setInterval(() => {
       timeLeft--;
       countEl.textContent = timeLeft;
@@ -182,4 +220,4 @@
 </script>
 
 </body>
-</html>
+  </html>
