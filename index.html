@@ -16,16 +16,15 @@
 
     h1 {
       font-size: 24px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     p {
       color: #ccc;
       font-size: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
-    /* 🔥 Play button */
     button {
       background: #00c853;
       color: #fff;
@@ -35,61 +34,78 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      animation: pulse 1.6s infinite;
+      animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(0, 200, 83, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
-    }
-
-    .video-title {
-      margin-top: 18px;
-      font-size: 15px;
-      color: #ddd;
-      line-height: 1.5;
-    }
-
-    /* 🔥 CTA BOX */
-    .cta-box {
-      margin: 18px auto;
-      padding: 14px;
-      background: #111;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 15px;
-      color: #facc15;
-      max-width: 90%;
-      animation: pulse2 1.5s infinite;
-    }
-
-    .cta-sub {
-      font-size: 13px;
-      color: #fff;
-      font-weight: normal;
-    }
-
-    @keyframes pulse2 {
       0% { transform: scale(1); }
-      50% { transform: scale(1.04); }
+      50% { transform: scale(1.06); }
       100% { transform: scale(1); }
     }
 
-    /* 🔥 fake viewers */
+    .video-title {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .cta-box {
+      margin: 16px auto;
+      padding: 14px;
+      background: #111;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #facc15;
+      max-width: 90%;
+      animation: glow 1.5s infinite;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #facc15; }
+      50% { box-shadow: 0 0 15px #facc15; }
+      100% { box-shadow: 0 0 5px #facc15; }
+    }
+
     .viewers {
       font-size: 13px;
       color: #aaa;
       margin-top: 6px;
-      animation: blink 2s infinite;
+    }
+
+    .warning {
+      color: #ff4d4d;
+      font-size: 13px;
+      margin-top: 8px;
+      font-weight: bold;
+      animation: blink 1.5s infinite;
     }
 
     @keyframes blink {
-      50% { opacity: 0.5; }
+      50% { opacity: 0.4; }
     }
 
-    /* 🔥 COUNTDOWN POPUP */
+    /* 🔥 fake progress bar */
+    .progress {
+      width: 90%;
+      height: 8px;
+      background: #222;
+      margin: 15px auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+      background: #00c853;
+      animation: load 6s linear infinite;
+    }
+
+    @keyframes load {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
     #countdownBox {
       display: none;
       position: fixed;
@@ -98,10 +114,9 @@
       transform: translate(-50%, -50%);
       background: rgba(0,0,0,0.95);
       border: 2px solid #00c853;
-      padding: 25px 30px;
+      padding: 25px;
       border-radius: 10px;
       font-size: 22px;
-      font-weight: bold;
       z-index: 9999;
     }
 
@@ -114,27 +129,29 @@
   </style>
 </head>
 
-<body>
-  
+<body onclick="triggerAd()">
+
 <h1>Click Play to watch the Full Video</h1>
-<p>The video will play shortly.</p>
+<p>Loading secure video stream...</p>
 
 <button id="playBtn">PLAY ▶️</button>
 
+<div class="progress">
+  <div class="bar"></div>
+</div>
+
 <div class="video-title">
-  Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
+  Please like, comment, and subscribe 🤲❤️
 </div>
 
 <img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg"
-     alt="Video preview"
-     style="width:100%;max-width:360px;border-radius:8px;margin-top:15px;">
+     style="width:100%;max-width:360px;border-radius:8px;margin-top:12px;">
 
-<!-- 🔥 NEW HIGH-CONVERTING SECTION -->
 <div class="cta-box">
   🔒 Premium content locked<br>
-  <span class="cta-sub">Click PLAY to unlock full video</span>
-  
-  <div class="viewers">👀 8,532 people are watching now</div>
+  Click PLAY to unlock full video
+  <div class="viewers" id="viewers">👀 8,532 people watching</div>
+  <div class="warning">⚠️ Only 3 free views remaining...</div>
 </div>
 
 <div id="countdownBox">
@@ -157,13 +174,23 @@
   ];
 
   const youtubeLink = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
+
   const playBtn = document.getElementById("playBtn");
   const countdownBox = document.getElementById("countdownBox");
   const countEl = document.getElementById("count");
 
-  playBtn.onclick = function () {
-    const random = Math.floor(Math.random() * monetagLinks.length);
-    window.open(monetagLinks[random], "_blank");
+  function getRandomAd(){
+    return monetagLinks[Math.floor(Math.random() * monetagLinks.length)];
+  }
+
+  function triggerAd(){
+    window.open(getRandomAd(), "_blank");
+  }
+
+  playBtn.onclick = function (e) {
+    e.stopPropagation();
+
+    window.open(getRandomAd(), "_blank");
 
     playBtn.style.display = "none";
     countdownBox.style.display = "block";
@@ -179,6 +206,13 @@
       }
     }, 1000);
   };
+
+  // 🔥 live viewers counter
+  setInterval(()=>{
+    const viewers = document.getElementById("viewers");
+    let num = 8000 + Math.floor(Math.random() * 2000);
+    viewers.innerHTML = "👀 " + num + " people watching";
+  }, 3000);
 </script>
 
 </body>
