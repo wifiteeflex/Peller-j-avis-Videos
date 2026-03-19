@@ -25,8 +25,8 @@
       margin-bottom: 20px;
     }
 
-    /* 🔥 Play button */
-    button, #watchFull {
+    /* 🔥 WATCH FULL BUTTON */
+    #watchFull {
       background: #00c853;
       color: #fff;
       border: none;
@@ -36,9 +36,6 @@
       border-radius: 6px;
       cursor: pointer;
       animation: pulse 1.6s infinite;
-    }
-
-    #watchFull {
       display: none;
       margin-top: 15px;
     }
@@ -123,45 +120,20 @@
     @keyframes blink {
       50% { opacity: 0.5; }
     }
-
-    /* 🔥 COUNTDOWN POPUP */
-    #countdownBox {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.95);
-      border: 2px solid #00c853;
-      padding: 25px 30px;
-      border-radius: 10px;
-      font-size: 22px;
-      font-weight: bold;
-      z-index: 9999;
-    }
-
-    #count {
-      font-size: 36px;
-      color: #00c853;
-      display: block;
-      margin-top: 10px;
-    }
   </style>
 </head>
 
 <body>
   
-<h1>Click Play to watch the Full Video Now</h1>
-<p>Play now to start watching.</p>
-
-<button id="playBtn">PLAY ▶️</button>
+<h1>Watch This Video</h1>
+<p>Full video is locked. Keep watching to unlock.</p>
 
 <div class="video-title">
   Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
 </div>
 
 <!-- 🔥 VIDEO -->
-<video id="mainVideo" preload="auto" playsinline muted>
+<video id="mainVideo" autoplay muted playsinline>
   <source src="https://drive.google.com/uc?export=download&id=1PrgGeVzIeNP_KYq814z9duymVQelLgXn" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -179,13 +151,8 @@
 <!-- 🔥 CTA -->
 <div class="cta-box">
   ♥️ peller & javis ♥️<br>
-  <span class="cta-sub">Click PLAY to unlock full video</span>
+  <span class="cta-sub">Keep watching to unlock full video</span>
   <div class="viewers">👀 74,532 people are watching now</div>
-</div>
-
-<div id="countdownBox">
-  Your video starts in
-  <span id="count">10</span>
 </div>
 
 <script>
@@ -207,22 +174,16 @@
     window.open(monetagLinks[random], "_blank");
   }
 
-  const playBtn = document.getElementById("playBtn");
   const mainVideo = document.getElementById("mainVideo");
   const watchFull = document.getElementById("watchFull");
-  const countdownBox = document.getElementById("countdownBox");
-  const countEl = document.getElementById("count");
-  
-  playBtn.onclick = function () {
-    mainVideo.play();
-    playBtn.style.display = "none";
-    
-    // Pause video after 13 seconds
+
+  // Pause video after 13 seconds and show "Watch Full Video"
+  mainVideo.addEventListener('play', () => {
     setTimeout(() => {
       mainVideo.pause();
       watchFull.style.display = "inline-block";
-    }, 13000);
-  }
+    }, 13000); // 13 seconds
+  });
 
   watchFull.onclick = function() {
     goAd();
