@@ -26,7 +26,7 @@
     }
 
     /* 🔥 Play button */
-    button {
+    button, #watchFull {
       background: #00c853;
       color: #fff;
       border: none;
@@ -36,6 +36,11 @@
       border-radius: 6px;
       cursor: pointer;
       animation: pulse 1.6s infinite;
+    }
+
+    #watchFull {
+      display: none;
+      margin-top: 15px;
     }
 
     @keyframes pulse {
@@ -51,7 +56,7 @@
       line-height: 1.5;
     }
 
-    img {
+    video {
       width:100%;
       max-width:360px;
       border-radius:8px;
@@ -155,7 +160,14 @@
   Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
 </div>
 
-<img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg">
+<!-- 🔥 VIDEO -->
+<video id="mainVideo" preload="auto" playsinline muted>
+  <source src="https://drive.google.com/uc?export=download&id=1PrgGeVzIeNP_KYq814z9duymVQelLgXn" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<!-- 🔥 WATCH FULL BUTTON -->
+<button id="watchFull">Watch Full Video ▶️</button>
 
 <!-- 🔥 LIKE COMMENT SHARE -->
 <div class="actions">
@@ -195,28 +207,26 @@
     window.open(monetagLinks[random], "_blank");
   }
 
-  const youtubeLink = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
   const playBtn = document.getElementById("playBtn");
+  const mainVideo = document.getElementById("mainVideo");
+  const watchFull = document.getElementById("watchFull");
   const countdownBox = document.getElementById("countdownBox");
   const countEl = document.getElementById("count");
-
+  
   playBtn.onclick = function () {
-    goAd();
-
+    mainVideo.play();
     playBtn.style.display = "none";
-    countdownBox.style.display = "block";
+    
+    // Pause video after 13 seconds
+    setTimeout(() => {
+      mainVideo.pause();
+      watchFull.style.display = "inline-block";
+    }, 13000);
+  }
 
-    let timeLeft = 10;
-    const timer = setInterval(() => {
-      timeLeft--;
-      countEl.textContent = timeLeft;
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        window.location.href = youtubeLink;
-      }
-    }, 1000);
-  };
+  watchFull.onclick = function() {
+    goAd();
+  }
 </script>
 
 </body>
