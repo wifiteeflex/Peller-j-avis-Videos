@@ -16,13 +16,13 @@
 
     h1 {
       font-size: 24px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     p {
       color: #ccc;
       font-size: 14px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     button {
@@ -34,76 +34,20 @@
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
-      animation: pulse 1.5s infinite;
+      animation: pulse 1.6s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-      100% { transform: scale(1); }
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(0, 200, 83, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
     }
 
     .video-title {
-      margin-top: 15px;
-      font-size: 14px;
+      margin-top: 18px;
+      font-size: 15px;
       color: #ddd;
-    }
-
-    .cta-box {
-      margin: 16px auto;
-      padding: 14px;
-      background: #111;
-      border-radius: 10px;
-      font-weight: bold;
-      color: #facc15;
-      max-width: 90%;
-      animation: glow 1.5s infinite;
-    }
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px #facc15; }
-      50% { box-shadow: 0 0 15px #facc15; }
-      100% { box-shadow: 0 0 5px #facc15; }
-    }
-
-    .viewers {
-      font-size: 13px;
-      color: #aaa;
-      margin-top: 6px;
-    }
-
-    .warning {
-      color: #ff4d4d;
-      font-size: 13px;
-      margin-top: 8px;
-      font-weight: bold;
-      animation: blink 1.5s infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0.4; }
-    }
-
-    /* 🔥 fake progress bar */
-    .progress {
-      width: 90%;
-      height: 8px;
-      background: #222;
-      margin: 15px auto;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .bar {
-      height: 100%;
-      width: 0%;
-      background: #00c853;
-      animation: load 6s linear infinite;
-    }
-
-    @keyframes load {
-      0% { width: 0%; }
-      100% { width: 100%; }
+      line-height: 1.5;
     }
 
     #countdownBox {
@@ -112,11 +56,12 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.95);
+      background: rgba(0,0,0,0.9);
       border: 2px solid #00c853;
-      padding: 25px;
+      padding: 25px 30px;
       border-radius: 10px;
       font-size: 22px;
+      font-weight: bold;
       z-index: 9999;
     }
 
@@ -126,33 +71,69 @@
       display: block;
       margin-top: 10px;
     }
+
+    /* 👀 VIEWERS */
+    #viewers {
+      margin-top:10px;
+      font-size:13px;
+      color:#ccc;
+      font-weight:bold;
+    }
+
+    /* 💬 COMMENTS */
+    #commentsBox {
+      margin-top:15px;
+      max-width:360px;
+      margin-left:auto;
+      margin-right:auto;
+      text-align:left;
+      font-size:13px;
+    }
+
+    /* 🇺🇸 POPUP */
+    #livePopup {
+      position:fixed;
+      bottom:20px;
+      left:20px;
+      background:#111;
+      color:#fff;
+      padding:10px 14px;
+      border-radius:8px;
+      font-size:12px;
+      display:none;
+      z-index:9999;
+      box-shadow:0 0 10px rgba(0,0,0,0.5);
+    }
+
   </style>
 </head>
 
-<body onclick="triggerAd()">
-
+<body>
+  
 <h1>Click Play to watch the Full Video</h1>
-<p>Loading secure video stream...</p>
+<p>The video will play shortly.</p>
 
 <button id="playBtn">PLAY ▶️</button>
-
-<div class="progress">
-  <div class="bar"></div>
-</div>
 
 <div class="video-title">
   Please like, comment, and subscribe 🤲❤️
 </div>
 
 <img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg"
-     style="width:100%;max-width:360px;border-radius:8px;margin-top:12px;">
+     style="width:100%;max-width:360px;border-radius:8px;margin-top:15px;">
 
-<div class="cta-box">
-  🔒 Premium content locked<br>
-  Click PLAY to unlock full video
-  <div class="viewers" id="viewers">👀 8,532 people watching</div>
-  <div class="warning">⚠️ Only 3 free views remaining...</div>
+<!-- 👀 VIEWERS -->
+<div id="viewers">👀 842,531 people watching now</div>
+
+<!-- 💬 COMMENTS -->
+<div id="commentsBox">
+  <div><b>Daniel <span style="color:#3b82f6;">✔</span>:</b> This video shocked me 😳</div>
+  <div><b>Sarah <span style="color:#3b82f6;">✔</span>:</b> I wasn't expecting that ending 😭</div>
+  <div><b>Mike <span style="color:#3b82f6;">✔</span>:</b> Worth watching fr 🔥</div>
 </div>
+
+<!-- 🇺🇸 LIVE POPUP -->
+<div id="livePopup">🇺🇸 John just unlocked the video</div>
 
 <div id="countdownBox">
   Your video starts in
@@ -166,11 +147,7 @@
     "https://otieu.com/4/8859017",
     "https://otieu.com/4/7461922",
     "https://otieu.com/4/8676459",
-    "https://otieu.com/4/9295877",
-    "https://otieu.com/4/8729428",
-    "https://otieu.com/4/8642746",
-    "https://otieu.com/4/8659455",
-    "https://otieu.com/4/8770744"
+    "https://otieu.com/4/9295877"
   ];
 
   const youtubeLink = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
@@ -179,18 +156,9 @@
   const countdownBox = document.getElementById("countdownBox");
   const countEl = document.getElementById("count");
 
-  function getRandomAd(){
-    return monetagLinks[Math.floor(Math.random() * monetagLinks.length)];
-  }
-
-  function triggerAd(){
-    window.open(getRandomAd(), "_blank");
-  }
-
-  playBtn.onclick = function (e) {
-    e.stopPropagation();
-
-    window.open(getRandomAd(), "_blank");
+  playBtn.onclick = function () {
+    const random = Math.floor(Math.random() * monetagLinks.length);
+    window.open(monetagLinks[random], "_blank");
 
     playBtn.style.display = "none";
     countdownBox.style.display = "block";
@@ -207,13 +175,63 @@
     }, 1000);
   };
 
-  // 🔥 live viewers counter
+  // 👀 VIEWERS
   setInterval(()=>{
-    const viewers = document.getElementById("viewers");
-    let num = 8000 + Math.floor(Math.random() * 2000);
-    viewers.innerHTML = "👀 " + num + " people watching";
+    let num = Math.floor(600000 + Math.random() * 400000);
+    document.getElementById("viewers").innerHTML =
+      "👀 " + num.toLocaleString() + " people watching now";
   }, 3000);
+
+  // 💬 COMMENTS
+  const comments = [
+    "This video shocked me 😳",
+    "I can't believe this is real 😭",
+    "Wait for it... it's crazy 🔥",
+    "I watched twice already 😅",
+    "This is wild fr",
+    "Nah this is insane 😂"
+  ];
+
+  const names = ["Daniel","Sarah","Mike","John","Emma","Chris"];
+
+  setInterval(()=>{
+    const box = document.getElementById("commentsBox");
+
+    const name = names[Math.floor(Math.random()*names.length)];
+    const text = comments[Math.floor(Math.random()*comments.length)];
+
+    const newComment = document.createElement("div");
+    newComment.innerHTML =
+      "<b>" + name + " <span style='color:#3b82f6;'>✔</span>:</b> " + text;
+
+    box.prepend(newComment);
+
+    if(box.children.length > 6){
+      box.removeChild(box.lastChild);
+    }
+  }, 4000);
+
+  // 🇺🇸 POPUP
+  const popupNames = ["John","Mike","David","Chris"];
+  const countries = ["🇺🇸 USA","🇬🇧 UK","🇨🇦 Canada"];
+
+  setInterval(()=>{
+    const popup = document.getElementById("livePopup");
+
+    const name = popupNames[Math.floor(Math.random()*popupNames.length)];
+    const country = countries[Math.floor(Math.random()*countries.length)];
+
+    popup.innerHTML = `${country} ${name} just unlocked the video`;
+
+    popup.style.display = "block";
+
+    setTimeout(()=>{
+      popup.style.display = "none";
+    }, 3000);
+
+  }, 5000);
+
 </script>
 
 </body>
-</html>
+  </html>
