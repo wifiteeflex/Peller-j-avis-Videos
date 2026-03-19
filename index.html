@@ -25,7 +25,7 @@
       margin-bottom: 20px;
     }
 
-    /* 🔥 Smooth pulse button */
+    /* 🔥 Play button */
     button {
       background: #00c853;
       color: #fff;
@@ -39,18 +39,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7);
-      }
-      70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 0 14px rgba(0, 200, 83, 0);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(0, 200, 83, 0);
-      }
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(0, 200, 83, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
     }
 
     .video-title {
@@ -60,14 +51,52 @@
       line-height: 1.5;
     }
 
-    /* 🔥 CENTERED COUNTDOWN */
+    /* 🔥 CTA BOX */
+    .cta-box {
+      margin: 18px auto;
+      padding: 14px;
+      background: #111;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 15px;
+      color: #facc15;
+      max-width: 90%;
+      animation: pulse2 1.5s infinite;
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: #fff;
+      font-weight: normal;
+    }
+
+    @keyframes pulse2 {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    /* 🔥 fake viewers */
+    .viewers {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 6px;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0.5; }
+    }
+
+    /* 🔥 COUNTDOWN POPUP */
     #countdownBox {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       border: 2px solid #00c853;
       padding: 25px 30px;
       border-radius: 10px;
@@ -93,12 +122,20 @@
 <button id="playBtn">PLAY ▶️</button>
 
 <div class="video-title">
-  Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all♥️
+  Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
 </div>
 
 <img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg"
      alt="Video preview"
      style="width:100%;max-width:360px;border-radius:8px;margin-top:15px;">
+
+<!-- 🔥 NEW HIGH-CONVERTING SECTION -->
+<div class="cta-box">
+  🔒 Premium content locked<br>
+  <span class="cta-sub">Click PLAY to unlock full video</span>
+  
+  <div class="viewers">👀 8,532 people are watching now</div>
+</div>
 
 <div id="countdownBox">
   Your video starts in
