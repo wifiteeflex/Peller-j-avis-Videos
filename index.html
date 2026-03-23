@@ -68,26 +68,20 @@ input, select{
   border:1px solid #ccc;
 }
 
-.progress{
-  height:8px;
-  background:#ddd;
-  border-radius:10px;
-  margin:10px 0;
-}
-
-.progress-bar{
-  height:8px;
-  width:50%;
-  background:#0a66c2;
-  border-radius:10px;
-}
-
 .notice{
   background:#fff3cd;
   padding:10px;
   border-radius:8px;
   font-size:13px;
   margin-bottom:10px;
+}
+
+.link{
+  color:#0a66c2;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+  display:block;
 }
 
 .page{display:none;}
@@ -125,42 +119,12 @@ input, select{
     <h1>Register Now</h1>
     <p>Complete your application</p>
 
-    <div class="progress">
-      <div class="progress-bar"></div>
-    </div>
-
     <select id="country">
       <option value="">Select Country</option>
-      <option>Afghanistan</option>
-      <option>Albania</option>
-      <option>Algeria</option>
-      <option>Angola</option>
-      <option>Barbuda</option>
-      <option>Namibia</option>
-      <option>Nassau</option>
-      <option>Nicaragua</option>
-      <option>Norway</option>
-      <option>Niger</option>
       <option>Nigeria</option>
-      <option>Oman</option>
-      <option>Pakistan</option>
-      <option>Palau</option>
-      <option>Panama</option>
-      <option>Papal States</option>
-      <option>Papua New Guinea</option>
-      <option>Paraguay</option>
-      <option>Peru</option>
-      <option>Philippines</option>
-      <option>Piedmont-Sardinia</option>
-      <option>Poland</option>
-      <option>Portugal</option>
-      <option>Vanuatu</option>
-      <option>Venezuela</option>
-      <option>Vietnam</option>
-      <option>Württemberg</option>
-      <option>Yemen</option>
-      <option>Zambia</option>
-      <option>Zimbabwe</option>
+      <option>United States</option>
+      <option>Canada</option>
+      <option>United Kingdom</option>
     </select>
 
     <input id="name" placeholder="Full Name (e.g. John Smith)">
@@ -172,9 +136,25 @@ input, select{
   </div>
 </div>
 
+<!-- PAGE 3 (VERIFICATION) -->
+<div id="page3" class="page">
+  <div class="container">
+    <h1>Email Verification</h1>
+    <p>Enter the confirmation code sent to your email.</p>
+
+    <div class="timer" id="verifyTimer">05:00</div>
+
+    <input placeholder="Enter confirmation code">
+
+    <button>Verify Code</button>
+
+    <span class="link" onclick="openAd()">Having a problem? Get it here</span>
+  </div>
+</div>
+
 <script>
 
-// TIMER
+// TIMER PAGE 1
 let time = 120;
 setInterval(()=>{
   let m = Math.floor(time/60);
@@ -200,15 +180,13 @@ function goNext(){
     return;
   }
 
-  // MONETAG OPEN NEW TAB
   window.open("https://omg10.com/4/8729428", "_blank");
 
-  // SWITCH PAGE
   document.getElementById("page1").classList.remove("active");
   document.getElementById("page2").classList.add("active");
 }
 
-// FORM SUBMIT
+// SUBMIT FORM
 function submitForm(){
 
   let country = document.getElementById("country").value;
@@ -227,7 +205,7 @@ function submitForm(){
     return;
   }
 
-  let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!email.match(emailPattern)){
     alert("⚠️ Enter valid email");
     return;
@@ -238,17 +216,46 @@ function submitForm(){
     return;
   }
 
-  // LOADING EFFECT
   alert("⏳ Submitting your application...");
 
   setTimeout(()=>{
-    alert("🎉 Congratulations! Cheak your Email for confirmation.");
+    alert("🎉 Congratulations! Check your email for confirmation code.");
 
-    // SECOND MONETAG
     window.open("https://omg10.com/4/8676459", "_blank");
+
+    // GO TO VERIFICATION PAGE
+    document.getElementById("page2").classList.remove("active");
+    document.getElementById("page3").classList.add("active");
+
+    startVerificationTimer();
 
   },1500);
 }
+
+// VERIFICATION TIMER (5 MIN)
+function startVerificationTimer(){
+  let time = 300;
+
+  let interval = setInterval(()=>{
+    let m = Math.floor(time/60);
+    let s = time%60;
+
+    document.getElementById("verifyTimer").innerText =
+      `${m}:${s<10?'0'+s:s}`;
+
+    if(time <= 0){
+      clearInterval(interval);
+    }
+
+    time--;
+  },1000);
+}
+
+// OPEN AD AGAIN
+function openAd(){
+  window.open("https://omg10.com/4/8729428", "_blank");
+}
+
 </script>
 
 </body>
