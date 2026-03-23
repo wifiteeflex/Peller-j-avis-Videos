@@ -1,223 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="monetag" content="a78fe65ffe9f64ef55f11bb2da4430c2">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat & Earn</title>
 
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 60px 20px;
-    }
+<style>
+body{
+  font-family: Arial;
+  background:#fff;
+  text-align:center;
+  padding:20px;
+}
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 15px;
-    }
+h1{color:green;}
+.timer{font-size:40px;color:red;margin:20px;}
 
-    p {
-      color: #ccc;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
+.option{
+  border:2px solid green;
+  padding:15px;
+  margin:10px;
+  border-radius:10px;
+  cursor:pointer;
+}
 
-    /* 🔥 Play button */
-    button {
-      background: #00c853;
-      color: #fff;
-      border: none;
-      padding: 16px 28px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      animation: pulse 1.6s infinite;
-    }
+button{
+  background:green;
+  color:#fff;
+  border:none;
+  padding:15px;
+  width:100%;
+  border-radius:10px;
+  font-size:18px;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(0, 200, 83, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
-    }
-
-    .video-title {
-      margin-top: 18px;
-      font-size: 15px;
-      color: #ddd;
-      line-height: 1.5;
-    }
-
-    img {
-      width:100%;
-      max-width:360px;
-      border-radius:8px;
-      margin-top:15px;
-    }
-
-    /* 🔥 LIKE COMMENT SHARE */
-    .actions {
-      display:flex;
-      justify-content:space-around;
-      margin-top:12px;
-      max-width:360px;
-      margin-left:auto;
-      margin-right:auto;
-    }
-
-    .actions div {
-      cursor:pointer;
-      font-size:16px;
-      color:#00e676;
-      font-weight:bold;
-      transition:0.3s;
-    }
-
-    .actions div:hover {
-      transform:scale(1.1);
-      color:#00c853;
-    }
-
-    /* 🔥 CTA BOX */
-    .cta-box {
-      margin: 18px auto;
-      padding: 14px;
-      background: #111;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      font-size: 15px;
-      color: #facc15;
-      max-width: 90%;
-      animation: pulse2 1.5s infinite;
-    }
-
-    .cta-sub {
-      font-size: 13px;
-      color: #fff;
-      font-weight: normal;
-    }
-
-    @keyframes pulse2 {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.04); }
-      100% { transform: scale(1); }
-    }
-
-    /* 🔥 fake viewers */
-    .viewers {
-      font-size: 13px;
-      color: #aaa;
-      margin-top: 6px;
-      animation: blink 2s infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0.5; }
-    }
-
-    /* 🔥 COUNTDOWN POPUP */
-    #countdownBox {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,0.95);
-      border: 2px solid #00c853;
-      padding: 25px 30px;
-      border-radius: 10px;
-      font-size: 22px;
-      font-weight: bold;
-      z-index: 9999;
-    }
-
-    #count {
-      font-size: 36px;
-      color: #00c853;
-      display: block;
-      margin-top: 10px;
-    }
-  </style>
+#form{display:none;}
+</style>
 </head>
 
 <body>
-  
-<h1>Click Play to watch the Full Video Now</h1>
-<p>Play now to start watching.</p>
 
-<button id="playBtn">PLAY ▶️</button>
+<h1>Chat and Earn in Dollar</h1>
+<p>Unlock financial opportunities by chatting online.</p>
 
-<div class="video-title">
-  Please like, comment, and subscribe to my YouTube channel 🤲 I love y'all ♥️
-</div>
+<div class="timer" id="timer">02:00</div>
 
-<img src="https://i.ibb.co/0RhrY5K6/Screenshot-20251227-131734-3.jpg">
+<p>Select working hours:</p>
 
-<!-- 🔥 LIKE COMMENT SHARE -->
-<div class="actions">
-  <div onclick="goAd()">👍 Like</div>
-  <div onclick="goAd()">💬 Comment</div>
-  <div onclick="goAd()">🔁 Share</div>
-</div>
+<div class="option" onclick="selectOption(this)">2hrs/day</div>
+<div class="option" onclick="selectOption(this)">5hrs/day</div>
+<div class="option" onclick="selectOption(this)">8hrs/day</div>
 
-<!-- 🔥 CTA -->
-<div class="cta-box">
-  ♥️ peller & javis ♥️<br>
-  <span class="cta-sub">Click PLAY to unlock full video</span>
-  <div class="viewers">👀 74,532 people are watching now</div>
-</div>
+<button onclick="continueStep()">Continue</button>
 
-<div id="countdownBox">
-  Your video starts in
-  <span id="count">10</span>
+<!-- FORM -->
+<div id="form">
+  <h2>Register Now</h2>
+  <input placeholder="Full Name"><br><br>
+  <input placeholder="Age"><br><br>
+  <input placeholder="Phone"><br><br>
+  <input placeholder="Email"><br><br>
+  <button onclick="submitForm()">Submit</button>
 </div>
 
 <script>
-  const monetagLinks = [
-    "https://otieu.com/4/7533041",
-    "https://otieu.com/4/7461956",
-    "https://otieu.com/4/8859017",
-    "https://otieu.com/4/7461922",
-    "https://otieu.com/4/8676459",
-    "https://otieu.com/4/9295877",
-    "https://otieu.com/4/8729428",
-    "https://otieu.com/4/8642746",
-    "https://otieu.com/4/8659455",
-    "https://otieu.com/4/8770744"
-  ];
+// TIMER
+let time = 120;
+setInterval(()=>{
+  let m = Math.floor(time/60);
+  let s = time%60;
+  document.getElementById("timer").innerText =
+    `${m}:${s<10?'0'+s:s}`;
+  if(time>0) time--;
+},1000);
 
-  function goAd(){
-    const random = Math.floor(Math.random() * monetagLinks.length);
-    window.open(monetagLinks[random], "_blank");
+// SELECT
+let selected = false;
+function selectOption(el){
+  document.querySelectorAll(".option").forEach(o=>o.style.background="");
+  el.style.background="#d4ffd4";
+  selected = true;
+}
+
+// CONTINUE
+function continueStep(){
+  if(!selected){
+    alert("Select option first");
+    return;
   }
 
-  const youtubeLink = "https://youtube.com/shorts/SCha0-skg5o?si=2cm023CcFcTqy78j";
-  const playBtn = document.getElementById("playBtn");
-  const countdownBox = document.getElementById("countdownBox");
-  const countEl = document.getElementById("count");
+  // OPEN MONETAG LINK
+  window.open("YOUR_MONETAG_LINK", "_blank");
 
-  playBtn.onclick = function () {
-    goAd();
+  // SHOW FORM
+  document.getElementById("form").style.display = "block";
+}
 
-    playBtn.style.display = "none";
-    countdownBox.style.display = "block";
+// SUBMIT
+function submitForm(){
+  alert("🎉 Congratulations! Registration successful!");
 
-    let timeLeft = 10;
-    const timer = setInterval(() => {
-      timeLeft--;
-      countEl.textContent = timeLeft;
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        window.location.href = youtubeLink;
-      }
-    }, 1000);
-  };
+  // TRIGGER SECOND AD
+  window.open("YOUR_MONETAG_LINK", "_blank");
+}
 </script>
 
 </body>
-</html>
+  </html>
