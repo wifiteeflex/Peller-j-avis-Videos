@@ -19,21 +19,6 @@ body{
   font-weight:bold;
 }
 
-/* NOTIFICATION */
-.notify{
-  position:fixed;
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#000;
-  color:#fff;
-  padding:10px 15px;
-  border-radius:20px;
-  font-size:13px;
-  display:none;
-  z-index:999;
-}
-
 .container{
   max-width:400px;
   margin:20px auto;
@@ -44,15 +29,6 @@ body{
 }
 
 h1{color:#0a66c2;font-size:22px;}
-
-.salary{
-  background:#e7f3ff;
-  padding:10px;
-  border-radius:8px;
-  margin:10px 0;
-  font-weight:bold;
-  color:#0a66c2;
-}
 
 .timer{
   font-size:30px;
@@ -92,28 +68,26 @@ input, select{
   border:1px solid #ccc;
 }
 
+.progress{
+  height:8px;
+  background:#ddd;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.progress-bar{
+  height:8px;
+  width:50%;
+  background:#0a66c2;
+  border-radius:10px;
+}
+
 .notice{
   background:#fff3cd;
   padding:10px;
   border-radius:8px;
   font-size:13px;
   margin-bottom:10px;
-}
-
-/* TESTIMONIALS */
-.testimonials{
-  overflow:hidden;
-  height:60px;
-  margin-top:10px;
-}
-
-.testimonials div{
-  animation:scroll 10s linear infinite;
-}
-
-@keyframes scroll{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(-100%);}
 }
 
 .page{display:none;}
@@ -123,20 +97,15 @@ input, select{
 
 <body>
 
-<div class="notify" id="notify"></div>
-
 <div class="header">Remote Chat Support Jobs</div>
 
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
   <div class="container">
     <h1>Chat and Earn in Dollars 💬💰</h1>
+    <p>Work remotely chatting with clients worldwide.</p>
 
-    <div class="salary">💰 Earn up to $25/hour working remotely</div>
-
-    <p>Work from home chatting with clients worldwide.</p>
-
-    <div class="notice">⚠️ Only 5 positions left today</div>
+    <div class="notice">⚠️ Only 15 positions left today</div>
 
     <div class="timer" id="timer">02:00</div>
 
@@ -147,17 +116,6 @@ input, select{
     <div class="option" onclick="selectOption(this)">8 hrs/day</div>
 
     <button onclick="goNext()">Continue</button>
-
-    <!-- TESTIMONIALS -->
-    <div class="testimonials">
-      <div>
-        ⭐ "I made my first $50 in a day!" – John<br>
-        ⭐ "Super easy work, I love it!" – Cynthia<br>
-        ⭐ "Best online job I've tried." – Olamide<br>
-        ⭐ "I work from home now!" – Michael
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -167,17 +125,47 @@ input, select{
     <h1>Register Now</h1>
     <p>Complete your application</p>
 
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+
     <select id="country">
       <option value="">Select Country</option>
-      <option>United States</option>
-      <option>Canada</option>
-      <option>United Kingdom</option>
+      <option>Afghanistan</option>
+      <option>Albania</option>
+      <option>Algeria</option>
+      <option>Angola</option>
+      <option>Barbuda</option>
+      <option>Namibia</option>
+      <option>Nassau</option>
+      <option>Nicaragua</option>
+      <option>Norway</option>
+      <option>Niger</option>
       <option>Nigeria</option>
+      <option>Oman</option>
+      <option>Pakistan</option>
+      <option>Palau</option>
+      <option>Panama</option>
+      <option>Papal States</option>
+      <option>Papua New Guinea</option>
+      <option>Paraguay</option>
+      <option>Peru</option>
+      <option>Philippines</option>
+      <option>Piedmont-Sardinia</option>
+      <option>Poland</option>
+      <option>Portugal</option>
+      <option>Vanuatu</option>
+      <option>Venezuela</option>
+      <option>Vietnam</option>
+      <option>Württemberg</option>
+      <option>Yemen</option>
+      <option>Zambia</option>
+      <option>Zimbabwe</option>
     </select>
 
     <input id="name" placeholder="Full Name (e.g. John Smith)">
     <input id="age" placeholder="Age (e.g. 25)">
-    <input id="phone" placeholder="Phone (e.g. +1 234 567 890)">
+    <input id="phone" placeholder="Phone (e.g. +234 9162 469 435)">
     <input id="email" placeholder="Email (e.g. john@gmail.com)">
 
     <button onclick="submitForm()">Submit Application</button>
@@ -196,29 +184,33 @@ setInterval(()=>{
   if(time>0) time--;
 },1000);
 
-// SELECT
+// SELECT OPTION
 let selected = false;
+
 function selectOption(el){
   document.querySelectorAll(".option").forEach(o=>o.classList.remove("active"));
   el.classList.add("active");
   selected = true;
 }
 
-// NEXT
+// NEXT PAGE
 function goNext(){
   if(!selected){
-    alert("Select working hours");
+    alert("Please select working hours");
     return;
   }
 
-  window.open("YOUR_MONETAG_LINK","_blank");
+  // MONETAG OPEN NEW TAB
+  window.open("https://omg10.com/4/8729428", "_blank");
 
+  // SWITCH PAGE
   document.getElementById("page1").classList.remove("active");
   document.getElementById("page2").classList.add("active");
 }
 
-// SUBMIT
+// FORM SUBMIT
 function submitForm(){
+
   let country = document.getElementById("country").value;
   let name = document.getElementById("name").value.trim();
   let age = document.getElementById("age").value.trim();
@@ -226,7 +218,7 @@ function submitForm(){
   let email = document.getElementById("email").value.trim();
 
   if(!country || !name || !age || !phone || !email){
-    alert("⚠️ Fill all fields");
+    alert("⚠️ Please fill all fields.");
     return;
   }
 
@@ -235,36 +227,28 @@ function submitForm(){
     return;
   }
 
-  alert("⏳ Submitting...");
+  let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if(!email.match(emailPattern)){
+    alert("⚠️ Enter valid email");
+    return;
+  }
+
+  if(phone.length < 8){
+    alert("⚠️ Enter valid phone");
+    return;
+  }
+
+  // LOADING EFFECT
+  alert("⏳ Submitting your application...");
 
   setTimeout(()=>{
-    alert("🎉 Congratulations! You are approved!");
-    window.open("YOUR_MONETAG_LINK","_blank");
+    alert("🎉 Congratulations! Cheak your Email for confirmation.");
+
+    // SECOND MONETAG
+    window.open("https://omg10.com/4/8676459", "_blank");
+
   },1500);
 }
-
-// FAKE LIVE NOTIFICATIONS
-let names = [
-  "John from USA just applied",
-  "Olamide from Nigeria just applied",
-  "Cynthia just applied",
-  "Michael from USA just applied",
-  "David just applied",
-  "Aisha from Nigeria just applied"
-];
-
-function showNotification(){
-  let notify = document.getElementById("notify");
-  notify.innerText = names[Math.floor(Math.random()*names.length)];
-  notify.style.display = "block";
-
-  setTimeout(()=>{
-    notify.style.display = "none";
-  },3000);
-}
-
-setInterval(showNotification,5000);
-
 </script>
 
 </body>
