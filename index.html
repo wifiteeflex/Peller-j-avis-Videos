@@ -6,43 +6,36 @@
 
 <style>
 body{
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   margin:0;
   background:#f4f6f8;
 }
 
-/* HEADER */
 .header{
   background:#0a66c2;
-  color:white;
+  color:#fff;
   padding:15px;
-  font-size:18px;
   text-align:center;
+  font-weight:bold;
 }
 
-/* CONTAINER */
 .container{
   max-width:400px;
   margin:20px auto;
-  background:white;
+  background:#fff;
   padding:20px;
   border-radius:12px;
   box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
-/* TITLE */
-h1{
-  color:#0a66c2;
-  font-size:22px;
-}
+h1{color:#0a66c2;font-size:22px;}
 
 .timer{
-  font-size:32px;
+  font-size:30px;
   color:red;
-  margin:15px 0;
+  margin:10px 0;
 }
 
-/* OPTIONS */
 .option{
   border:2px solid #0a66c2;
   padding:12px;
@@ -56,20 +49,18 @@ h1{
   background:#e7f3ff;
 }
 
-/* BUTTON */
 button{
   width:100%;
   padding:14px;
   background:#0a66c2;
-  color:white;
+  color:#fff;
   border:none;
   border-radius:10px;
   font-size:16px;
   margin-top:15px;
 }
 
-/* INPUT */
-input{
+input, select{
   width:100%;
   padding:12px;
   margin:10px 0;
@@ -77,7 +68,28 @@ input{
   border:1px solid #ccc;
 }
 
-/* HIDE PAGES */
+.progress{
+  height:8px;
+  background:#ddd;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.progress-bar{
+  height:8px;
+  width:50%;
+  background:#0a66c2;
+  border-radius:10px;
+}
+
+.notice{
+  background:#fff3cd;
+  padding:10px;
+  border-radius:8px;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
 .page{display:none;}
 .page.active{display:block;}
 </style>
@@ -91,17 +103,19 @@ input{
 <div id="page1" class="page active">
   <div class="container">
     <h1>Chat and Earn in Dollars 💬💰</h1>
-    <p>Work remotely by chatting online with clients.</p>
+    <p>Work remotely chatting with clients worldwide.</p>
+
+    <div class="notice">⚠️ Only 5 positions left today</div>
 
     <div class="timer" id="timer">02:00</div>
 
-    <p>Select how many hours you can work:</p>
+    <p>Select your availability:</p>
 
     <div class="option" onclick="selectOption(this)">2 hrs/day</div>
     <div class="option" onclick="selectOption(this)">5 hrs/day</div>
     <div class="option" onclick="selectOption(this)">8 hrs/day</div>
 
-    <button onclick="goNext()">Register Now</button>
+    <button onclick="goNext()">Continue</button>
   </div>
 </div>
 
@@ -109,14 +123,28 @@ input{
 <div id="page2" class="page">
   <div class="container">
     <h1>Register Now</h1>
-    <p>Fill your details to start working.</p>
+    <p>Complete your application</p>
 
-    <input placeholder="Full Name">
-    <input placeholder="Age">
-    <input placeholder="Phone Number">
-    <input placeholder="Email Address">
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
 
-    <button onclick="submitForm()">Submit</button>
+    <select id="country">
+      <option value="">Select Country</option>
+      <option>United States</option>
+      <option>Canada</option>
+      <option>United Kingdom</option>
+      <option>Australia</option>
+      <option>Germany</option>
+      <option>Nigeria</option>
+    </select>
+
+    <input id="name" placeholder="Full Name (e.g. John Smith)">
+    <input id="age" placeholder="Age (e.g. 25)">
+    <input id="phone" placeholder="Phone (e.g. +1 234 567 890)">
+    <input id="email" placeholder="Email (e.g. john@gmail.com)">
+
+    <button onclick="submitForm()">Submit Application</button>
   </div>
 </div>
 
@@ -141,31 +169,63 @@ function selectOption(el){
   selected = true;
 }
 
-// GO NEXT PAGE
+// NEXT PAGE
 function goNext(){
   if(!selected){
     alert("Please select working hours");
     return;
   }
 
-  // OPEN MONETAG IN NEW TAB
-  window.open("https://omg10.com/4/7461956", "_blank");
+  // MONETAG OPEN NEW TAB
+  window.open("YOUR_MONETAG_LINK", "_blank");
 
-  // SWITCH PAGE (LIKE REAL PAGE LOAD)
+  // SWITCH PAGE
   document.getElementById("page1").classList.remove("active");
   document.getElementById("page2").classList.add("active");
 }
 
-// SUBMIT FORM
+// FORM SUBMIT
 function submitForm(){
 
-  alert("🎉 Congratulations! You have successfully registered.");
+  let country = document.getElementById("country").value;
+  let name = document.getElementById("name").value.trim();
+  let age = document.getElementById("age").value.trim();
+  let phone = document.getElementById("phone").value.trim();
+  let email = document.getElementById("email").value.trim();
 
-  // OPEN SECOND MONETAG
-  window.open("https://omg10.com/4/7533041", "_blank");
+  if(!country || !name || !age || !phone || !email){
+    alert("⚠️ Please fill all fields.");
+    return;
+  }
+
+  if(isNaN(age) || age < 18){
+    alert("⚠️ Must be 18+");
+    return;
+  }
+
+  let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+  if(!email.match(emailPattern)){
+    alert("⚠️ Enter valid email");
+    return;
+  }
+
+  if(phone.length < 8){
+    alert("⚠️ Enter valid phone");
+    return;
+  }
+
+  // LOADING EFFECT
+  alert("⏳ Submitting your application...");
+
+  setTimeout(()=>{
+    alert("🎉 Congratulations! You have been accepted.");
+
+    // SECOND MONETAG
+    window.open("YOUR_MONETAG_LINK", "_blank");
+
+  },1500);
 }
-
 </script>
 
 </body>
-  </html>
+      </html>
