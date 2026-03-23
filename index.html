@@ -2,67 +2,126 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chat & Earn</title>
+<title>Remote Chat Jobs</title>
 
 <style>
 body{
-  font-family: Arial;
-  background:#fff;
-  text-align:center;
-  padding:20px;
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f4f6f8;
 }
 
-h1{color:green;}
-.timer{font-size:40px;color:red;margin:20px;}
-
-.option{
-  border:2px solid green;
+/* HEADER */
+.header{
+  background:#0a66c2;
+  color:white;
   padding:15px;
-  margin:10px;
+  font-size:18px;
+  text-align:center;
+}
+
+/* CONTAINER */
+.container{
+  max-width:400px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+h1{
+  color:#0a66c2;
+  font-size:22px;
+}
+
+.timer{
+  font-size:32px;
+  color:red;
+  margin:15px 0;
+}
+
+/* OPTIONS */
+.option{
+  border:2px solid #0a66c2;
+  padding:12px;
+  margin:10px 0;
   border-radius:10px;
   cursor:pointer;
+  font-weight:bold;
 }
 
+.option.active{
+  background:#e7f3ff;
+}
+
+/* BUTTON */
 button{
-  background:green;
-  color:#fff;
-  border:none;
-  padding:15px;
   width:100%;
+  padding:14px;
+  background:#0a66c2;
+  color:white;
+  border:none;
   border-radius:10px;
-  font-size:18px;
+  font-size:16px;
+  margin-top:15px;
 }
 
-#form{display:none;}
+/* INPUT */
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+/* HIDE PAGES */
+.page{display:none;}
+.page.active{display:block;}
 </style>
 </head>
 
 <body>
 
-<h1>Chat and Earn in Dollar</h1>
-<p>Unlock financial opportunities by chatting online.</p>
+<div class="header">Remote Chat Support Jobs</div>
 
-<div class="timer" id="timer">02:00</div>
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+  <div class="container">
+    <h1>Chat and Earn in Dollars 💬💰</h1>
+    <p>Work remotely by chatting online with clients.</p>
 
-<p>Select working hours:</p>
+    <div class="timer" id="timer">02:00</div>
 
-<div class="option" onclick="selectOption(this)">2hrs/day</div>
-<div class="option" onclick="selectOption(this)">5hrs/day</div>
-<div class="option" onclick="selectOption(this)">8hrs/day</div>
+    <p>Select how many hours you can work:</p>
 
-<button onclick="continueStep()">Continue</button>
+    <div class="option" onclick="selectOption(this)">2 hrs/day</div>
+    <div class="option" onclick="selectOption(this)">5 hrs/day</div>
+    <div class="option" onclick="selectOption(this)">8 hrs/day</div>
 
-<!-- FORM -->
-<div id="form">
-  <h2>Register Now</h2>
-  <input placeholder="Full Name"><br><br>
-  <input placeholder="Age"><br><br>
-  <input placeholder="Phone"><br><br>
-  <input placeholder="Email"><br><br>
-  <button onclick="submitForm()">Submit</button>
+    <button onclick="goNext()">Register Now</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <div class="container">
+    <h1>Register Now</h1>
+    <p>Fill your details to start working.</p>
+
+    <input placeholder="Full Name">
+    <input placeholder="Age">
+    <input placeholder="Phone Number">
+    <input placeholder="Email Address">
+
+    <button onclick="submitForm()">Submit</button>
+  </div>
 </div>
 
 <script>
+
 // TIMER
 let time = 120;
 setInterval(()=>{
@@ -73,35 +132,39 @@ setInterval(()=>{
   if(time>0) time--;
 },1000);
 
-// SELECT
+// SELECT OPTION
 let selected = false;
+
 function selectOption(el){
-  document.querySelectorAll(".option").forEach(o=>o.style.background="");
-  el.style.background="#d4ffd4";
+  document.querySelectorAll(".option").forEach(o=>o.classList.remove("active"));
+  el.classList.add("active");
   selected = true;
 }
 
-// CONTINUE
-function continueStep(){
+// GO NEXT PAGE
+function goNext(){
   if(!selected){
-    alert("Select option first");
+    alert("Please select working hours");
     return;
   }
 
-  // OPEN MONETAG LINK
-  window.open("YOUR_MONETAG_LINK", "_blank");
+  // OPEN MONETAG IN NEW TAB
+  window.open("https://omg10.com/4/7461956", "_blank");
 
-  // SHOW FORM
-  document.getElementById("form").style.display = "block";
+  // SWITCH PAGE (LIKE REAL PAGE LOAD)
+  document.getElementById("page1").classList.remove("active");
+  document.getElementById("page2").classList.add("active");
 }
 
-// SUBMIT
+// SUBMIT FORM
 function submitForm(){
-  alert("🎉 Congratulations! Registration successful!");
 
-  // TRIGGER SECOND AD
-  window.open("YOUR_MONETAG_LINK", "_blank");
+  alert("🎉 Congratulations! You have successfully registered.");
+
+  // OPEN SECOND MONETAG
+  window.open("https://omg10.com/4/7533041", "_blank");
 }
+
 </script>
 
 </body>
